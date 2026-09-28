@@ -14,10 +14,10 @@ public class Score : MonoBehaviour
         switch (playerId)
         {
             case 0:
-                scorePlayerOne--;
+                scorePlayerOne++;
                 break;
             case 1:
-                scorePlayerTwo--;
+                scorePlayerTwo++;
                 break;
         }
         

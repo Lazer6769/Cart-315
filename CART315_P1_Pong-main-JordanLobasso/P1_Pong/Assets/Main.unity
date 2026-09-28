@@ -1784,6 +1784,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
   speed: 500
+  minimumRotationDelay: 3
+  maximumRotationDelay: 7
+  rotationSpeed: 360
+  minimumSize: 0.75
+  maximumSize: 1.25
+  minimumSizeChangeDelay: 2
+  maximumSizeChangeDelay: 5
+  sizeChangeDuration: 0.5
 --- !u!61 &1233802268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2300,7 +2308,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5296598574498665562, guid: 36d863dd16cf0fd46a56fc42989d9bac, type: 3}
       propertyPath: speed
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6740225261445795763, guid: 36d863dd16cf0fd46a56fc42989d9bac, type: 3}
       propertyPath: m_Color.b
@@ -2433,7 +2441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9017968837999438303, guid: 0ebf69f662f2c5f498536ab3385c51f1, type: 3}
       propertyPath: speed
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

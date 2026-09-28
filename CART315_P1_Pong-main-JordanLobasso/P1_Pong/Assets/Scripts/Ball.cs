@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D _rigidBody;
+    private bool _nextSizeIsLarge;
 
     public float speed = 100.0f;
     public float minimumRotationDelay = 3.0f;
@@ -13,13 +14,14 @@ public class Ball : MonoBehaviour
     public float rotationSpeed = 360.0f;
     public float minimumSize = 0.75f;
     public float maximumSize = 1.25f;
-    public float minimumSizeChangeDelay = 2.0f;
-    public float maximumSizeChangeDelay = 5.0f;
+    public float minimumSizeChangeDelay = 0.5f;
+    public float maximumSizeChangeDelay = 2.0f;
     public float sizeChangeDuration = 0.5f;
 
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _nextSizeIsLarge = Random.value < 0.5f;
         StartCoroutine(RandomlyRotateBall());
         StartCoroutine(RandomlyChangeSize());
     }
@@ -71,7 +73,8 @@ public class Ball : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(minimumSizeChangeDelay, maximumSizeChangeDelay));
 
-            float targetSize = Random.Range(minimumSize, maximumSize);
+            float targetSize = _nextSizeIsLarge ? maximumSize : minimumSize;
+            _nextSizeIsLarge = !_nextSizeIsLarge;
             Vector3 startingScale = transform.localScale;
             Vector3 targetScale = new Vector3(targetSize, targetSize, startingScale.z);
             float elapsed = 0.0f;

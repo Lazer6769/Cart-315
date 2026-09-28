@@ -12,13 +12,16 @@ public class CPUController : MonoBehaviour
     public float maximumY = 3.5f;
     public float minimumRotationDelay = 3.0f;
     public float maximumRotationDelay = 7.0f;
-    public float rotationSpeed = 180.0f;
+    public float rotationSpeed = 360.0f;
+    public float winningRotationDelayMultiplier = 0.5f;
 
     private float _decisionTimer;
     private float _targetY;
+    private Score _score;
 
     private void Start()
     {
+        _score = FindFirstObjectByType<Score>();
         ChooseTarget();
         StartCoroutine(RandomlyRotatePaddle());
     }
@@ -54,7 +57,11 @@ public class CPUController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minimumRotationDelay, maximumRotationDelay));
+            float delay = Random.Range(minimumRotationDelay, maximumRotationDelay);
+            if (_score != null && _score.scorePlayerTwo > _score.scorePlayerOne)
+                delay *= winningRotationDelayMultiplier;
+
+            yield return new WaitForSeconds(delay);
             yield return RotatePaddle180();
         }
     }
