@@ -2,9 +2,9 @@
 - the first rendition of my project would have been inspired by minecraft's glide minigame that they made a good while ago
 - it would've had Minecraft steve on an elytra passing through various minecraft pillars
 - while performing boost and tricks to gain more points 
-- or if not flappy bird but slightly intense with different controls and what not 
+- or if not possible i'll jst code flappy bird but slightly intense with different controls and what not 
 
-Never mind 
+
 
 ## Intense flappy birds
 
