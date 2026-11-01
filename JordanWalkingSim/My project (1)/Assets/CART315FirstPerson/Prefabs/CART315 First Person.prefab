@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 5856394514190234186}
   - component: {fileID: 2269117464549292467}
   - component: {fileID: 522398293480352643}
-  - component: {fileID: 1003173311239342572}
   m_Layer: 2
   m_Name: CART315 First Person
   m_TagString: Untagged
@@ -431,29 +430,6 @@ MonoBehaviour:
   _rightFootstep: {fileID: 8300000, guid: e1348b0f69eeae749bc57c4579b31c0d, type: 3}
   _stepDistance: 1.8
   _volume: 0.35
---- !u!164 &1003173311239342572
-AudioReverbFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656500101664370645}
-  m_Enabled: 1
-  m_DryLevel: -111
-  m_Room: -935
-  m_RoomHF: 0
-  m_DecayTime: 1
-  m_DecayHFRatio: 0.5
-  m_ReflectionsLevel: -7085
-  m_ReverbLevel: 0
-  m_ReverbDelay: 0.0701
-  m_Diffusion: 100
-  m_Density: 100
-  m_HFReference: 5000
-  m_RoomLF: 0
-  m_LFReference: 250
-  m_ReflectionsDelay: 0.1009
-  m_ReverbPreset: 27
 --- !u!1 &5763209486127740953
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +631,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -753,11 +729,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Cart315.FirstPerson::Cart315.FirstPerson.Soundsandwhatnot
   _sounds:
   - {fileID: 8300000, guid: 1accc625a5c4678458312d611062a6c9, type: 3}
-  - {fileID: 8300000, guid: 126370f4b1caf734f86602ed2fef3e7a, type: 3}
-  - {fileID: 8300000, guid: 0ad8077dba5dfa14fbb7b2fb29ae6152, type: 3}
+  - {fileID: 8300000, guid: 7dbcc65359f6bfb478f7686ea7d53a92, type: 3}
   - {fileID: 8300000, guid: c766725d7e955714cb5b476e4dc11a3f, type: 3}
+  - {fileID: 8300000, guid: 0ad8077dba5dfa14fbb7b2fb29ae6152, type: 3}
   - {fileID: 8300000, guid: 08ae0f47c6c951e438c3100fed8b9c54, type: 3}
-  _intervalSeconds: 5
+  _intervalSeconds: 30
   _audioSource: {fileID: 0}
 --- !u!170 &137787736690084581
 AudioDistortionFilter:
