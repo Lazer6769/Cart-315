@@ -76,6 +76,11 @@ namespace Cart315.FirstPerson
         public float WalkSpeed => _movementSpeed;
         public Transform CameraHolder => _cameraHolderTransform;
         public float GravityMultiplier => _gravityMultiplier;
+
+        public void SetGravityMultiplier(float multiplier)
+        {
+            _gravityMultiplier = multiplier;
+        }
         #endregion
 
         #region Public Fields
