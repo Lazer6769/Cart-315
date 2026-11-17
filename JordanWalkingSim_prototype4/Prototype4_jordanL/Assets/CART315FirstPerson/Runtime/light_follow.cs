@@ -1,81 +1,49 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cart315.FirstPerson
 {
-    [RequireComponent(typeof(BoxCollider))]
     public class light_follow : MonoBehaviour
     {
         [SerializeField] private Transform player;
         [SerializeField] private Transform spotlight;
+        [SerializeField] private BoxCollider lightBound;
 
-        private BoxCollider lightBound;
-        private readonly HashSet<Collider> playerColliders = new HashSet<Collider>();
-        private Vector3 followOffset;
+        private CharacterController playerController;
+        private bool playerInsideBounds;
 
         private void Awake()
         {
-            lightBound = GetComponent<BoxCollider>();
-
-            if (player == null)
-                Debug.LogError("Assign the player Transform to Light Follow.", this);
-
-            if (spotlight == null)
-                Debug.LogError("Assign the spotlight Transform to Light Follow.", this);
-
-            if (lightBound == null)
-                Debug.LogError("Assign the light_bound BoxCollider to Light Follow.", this);
-            else if (!lightBound.isTrigger)
-                Debug.LogError("The light_bound BoxCollider must have Is Trigger enabled.", this);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!IsPlayerCollider(other))
-                return;
-
-            if (playerColliders.Count == 0)
-                followOffset = spotlight.position - player.position;
-
-            playerColliders.Add(other);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (IsPlayerCollider(other))
+            if (player == null || spotlight == null || lightBound == null)
             {
-                playerColliders.Remove(other);
+                Debug.LogError("Assign the player, spotlight, and room BoxCollider to Light Follow.", this);
+                enabled = false;
+                return;
+            }
 
-                if (playerColliders.Count == 0)
-                    KeepSpotlightInsideBounds();
+            playerController = player.GetComponent<CharacterController>();
+            if (playerController == null)
+            {
+                Debug.LogError("The assigned player must have a CharacterController.", this);
+                enabled = false;
             }
         }
 
         private void LateUpdate()
         {
-            if (playerColliders.Count > 0)
+            bool isPlayerInside = lightBound.bounds.Intersects(playerController.bounds);
+
+            if (isPlayerInside)
             {
-                spotlight.position = lightBound.ClosestPoint(player.position + followOffset);
+                Vector3 overheadPosition = player.position;
+                overheadPosition.y = playerController.bounds.max.y + 0.25f;
+                spotlight.position = lightBound.ClosestPoint(overheadPosition);
             }
-        }
-
-        private void OnDisable()
-        {
-            playerColliders.Clear();
-        }
-
-        private bool IsPlayerCollider(Collider other)
-        {
-            return player != null
-                && lightBound != null
-                && spotlight != null
-                && (other.transform == player || other.transform.IsChildOf(player));
-        }
-
-        private void KeepSpotlightInsideBounds()
-        {
-            if (spotlight != null && lightBound != null)
+            else if (playerInsideBounds)
+            {
                 spotlight.position = lightBound.ClosestPoint(spotlight.position);
+            }
+
+            playerInsideBounds = isPlayerInside;
         }
     }
 }
